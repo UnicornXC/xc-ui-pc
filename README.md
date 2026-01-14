@@ -4,6 +4,8 @@
 
 ### nginx 配置
 
+- 注意开启服务端包含项目 `ssi` 
+
 ```sh
 worker_processes  1;
 
@@ -21,12 +23,23 @@ http {
     server{
 	      listen       80;
 	      server_name  www.xuecheng.com;
+
+        # 服务端包含技术
 	      ssi on;
 	      ssi_silent_errors on;
+
 	      location / {
 		      alias   /path/to/xc-ui-pc/;
 		      index  index.html;
 	      }
     }
 }
+```
+
+### 域名访问
+
+- 如果需要使用域名访问，则修改 `/etc/hosts` 文件
+
+```sh
+127.0.0.0  www.xuecheng.com
 ```
